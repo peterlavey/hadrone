@@ -1,1 +1,1 @@
-angular.module('Hadrone', ['Controller', 'Service']);
+angular.module('Hadrone', ['Controller', 'Service', 'Directive']);

@@ -15,6 +15,15 @@
   <body ng-controller="Dashboard">
   	<div class="wrapper">
   			<h2>{{name}}</h2>
+        <input type="file" ng-file-select="onFileSelect($files)" >
+       <!--  <input type="file" ng-file-select="onFileSelect($files)" multiple> -->
+
+         </form>
+         <b>Preview:</b><br />
+         <i ng-hide="imageSrc">No image choosed</i>
+         <img ng-src="{{imageSrc}}" /><br/>
+         <b>Progress:</b>
+        <progress value="{{progress}}"></progress>
   	</div>
   </body>
 </html>
