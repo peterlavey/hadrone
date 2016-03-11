@@ -1,0 +1,26 @@
+{
+  "name": "hadrone",
+  "version": "1.0.0",
+  "description": "Entorno de desarrollo javascript",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://PedroCisternas@bitbucket.org/PedroCisternas/hadrone.git"
+  },
+  "keywords": [
+    "Electron",
+    "Javascript"
+  ],
+  "author": "Hadrone",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "electron-prebuilt": "^0.36.0"
+  }
+}

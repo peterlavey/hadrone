@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <input type="file" id="container" onchange="jsonFile();">
+    <picture>
+      <img src="icon.png" alt="a cute kitten">
+    </picture>
+  </body>
+</html>
+<script>
+
+  function jsonFile(){
+    let a = document.getElementById("container");
+    readTextFile("file:///"+a.files[0].path);
+  }
+
+  function readTextFile(file){
+      let rawFile = new XMLHttpRequest();
+
+      rawFile.open("GET", file, false);
+      rawFile.setRequestHeader("Content-type", "application/json; charset=utf-8");
+      rawFile.onreadystatechange = function ()
+      {
+          if(rawFile.readyState === 4)
+          {
+              if(rawFile.status === 200 || rawFile.status == 0)
+              {
+                  let allText = rawFile.responseText;
+                  var data = JSON.parse(allText);
+                  console.log(data);
+              }
+          }
+      }
+      rawFile.send(null);
+  }
+</script>
