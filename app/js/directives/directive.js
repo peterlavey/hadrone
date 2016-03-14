@@ -9,7 +9,7 @@ angular.module('Directive', [])
       let fn = $parse(attrs.onReadFile);
 			element.on('change', (onChangeEvent)=>{
 				const reader = new FileReader();
-				reader.onload = (onLoadEvent)=>scope.$apply(()=>fn(scope, {$fileContent:onLoadEvent.target.result}));
+				reader.onload = (onLoadEvent)=>scope.$apply(()=>fn(scope, {$fileContent:onLoadEvent.target.result, $filePath:((onChangeEvent.srcElement || onChangeEvent.target).files[0].path)}));
 				reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
 			});
 		}

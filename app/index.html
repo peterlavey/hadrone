@@ -16,10 +16,10 @@
   <body ng-controller="Dashboard">
   	<div class="wrapper">
   			<h2>{{name}}</h2>
-        <input type="file" on-read-file="showContent($fileContent)" />
+        <input type="file" on-read-file="showContent($fileContent, $filePath)" />
         <div ng-if="content">
-            <h2>File content is:</h2>
-            <pre>{{ content }}</pre>
+            <h2>{{file.name}}</h2>
+            <img ng-src="{{img}}" height="100" width="100"/>
         </div>
   	</div>
   </body>
