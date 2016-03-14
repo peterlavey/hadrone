@@ -1,11 +1,17 @@
+"use strict";
+
 angular.module('Directive', [])
-.directive("ngFileSelect",()=>{
-  return {
-    link: function($scope,el){
-      el.bind("change", function(e){
-        $scope.file = (e.srcElement || e.target).files[0];
-        $scope.getFile();
-      })
-    }    
-  }
-})
+.directive('onReadFile', ($parse)=>{
+	return {
+		restrict: 'A',
+		scope: false,
+		link: (scope, element, attrs)=>{
+      let fn = $parse(attrs.onReadFile);
+			element.on('change', (onChangeEvent)=>{
+				const reader = new FileReader();
+				reader.onload = (onLoadEvent)=>scope.$apply(()=>fn(scope, {$fileContent:onLoadEvent.target.result}));
+				reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
+			});
+		}
+	};
+});

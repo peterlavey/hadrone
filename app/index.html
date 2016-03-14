@@ -8,6 +8,7 @@
   	<link rel="stylesheet" href="css/style.css">
   	<script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="js/directives/directive.js"></script>
   	<script src="js/controllers/controller.js"></script>
   	<script src="js/services/service.js"></script>
   	<script src="js/main.js"></script>
@@ -15,15 +16,11 @@
   <body ng-controller="Dashboard">
   	<div class="wrapper">
   			<h2>{{name}}</h2>
-        <input type="file" ng-file-select="onFileSelect($files)" >
-       <!--  <input type="file" ng-file-select="onFileSelect($files)" multiple> -->
-
-         </form>
-         <b>Preview:</b><br />
-         <i ng-hide="imageSrc">No image choosed</i>
-         <img ng-src="{{imageSrc}}" /><br/>
-         <b>Progress:</b>
-        <progress value="{{progress}}"></progress>
+        <input type="file" on-read-file="showContent($fileContent)" />
+        <div ng-if="content">
+            <h2>File content is:</h2>
+            <pre>{{ content }}</pre>
+        </div>
   	</div>
   </body>
 </html>
