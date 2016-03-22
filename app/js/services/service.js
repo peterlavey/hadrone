@@ -1,6 +1,6 @@
 define(['./module'], (services)=>{
   'use strict';
-  services.factory('Test', ['$scope', ($scope)=>{
+  services.factory('Test', [()=>{
     return {
       test:() => 123
     }

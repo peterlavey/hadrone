@@ -1,4 +1,4 @@
-define(['angular', './controllers/index', './directives/index', './services/index'], (angular)=>{
+define(['angular', './controllers/controller', './directives/directive', './services/service'], (ng)=>{
   'use strict';
-  return angular.module('app', ['app.controllers', 'app.directives', 'app.services']);
+  return ng.module('app', ['app.controllers', 'app.directives', 'app.services']);
 });

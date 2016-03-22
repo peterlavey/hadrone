@@ -1,6 +1,6 @@
 define(['./module'], (controllers)=>{
   'use strict';
-  controllers.controller('Dashboard', ['$scope', ($scope)=>{
+  controllers.controller('Dashboard', ['$scope', 'Test', ($scope, Test)=>{
     $scope.name="Hadrone";
     $scope.proyects=[];
 
