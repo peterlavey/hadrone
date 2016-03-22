@@ -1,0 +1,23 @@
+requirejs.config({
+  //baseUrl: 'bower_components',
+  paths:{
+    'domReady':'../bower_components/domReady/domReady',
+    'angular':'../bower_components/angular/angular.min',
+    //'angular-ui-router':'angular-route/release/angular-ui-router.min',
+    //'bootstrap':'bootstrap/dist/js/bootstrap.min',
+    'jquery':'../bower_components/jquery/dist/jquery.min'
+  },
+  shim:{
+    'angular':{
+      deps:['jquery'],
+      exports:'angular'
+    },
+    /*'angular-ui-router':{
+      deps:['angular']
+    },
+    'bootstrap':{
+      deps:['jquery']
+    }*/
+  },
+  deps:['../js/bootstrap']
+});

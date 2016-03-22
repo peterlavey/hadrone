@@ -6,6 +6,7 @@ const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
 const fs = require('fs');
+const prompt = require('prompt');
 
 let mainWindow;
 
@@ -14,6 +15,12 @@ let mainWindow;
 //var path = require('path');
 
 //var trayIcon = null;
+prompt.start();
+
+
+prompt.get(['asd?'], function (err, result) {
+    console.log(result);
+  });
 
 ipc.on('asynchronous-message', function(event, arg) {
   //console.log(arg);  // prints "ping"
@@ -38,8 +45,8 @@ function createWindow () {
     height: 600,
     frame: true,
     resizable: true,
-    fullscreen: false,
-    //transparent: true,
+    fullscreen: true,
+    transparent: true,
     //backgroundColor: '#000',
     icon:__dirname+'/img/icon.png'
   });

@@ -1,33 +1,23 @@
 <!doctype html>
-<html ng-app="Hadrone">
+<html ng-app="app">
   <head>
   	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<title>Hadrone</title>
-
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   	<link rel="stylesheet" href="css/style.css">
-
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-  	<script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/angular-route/angular-route.min.js"></script>
-    <script src="js/directives/directive.js"></script>
-  	<script src="js/controllers/controller.js"></script>
-  	<script src="js/services/service.js"></script>
-  	<script src="js/main.js"></script>
-
   </head>
   <body ng-controller="Dashboard">
   	<div class="wrapper">
-  			<h2>{{name}}</h2>
-        <span class="glyphicon glyphicon-plus"></span>
-        <input id="addFile" type="file" on-read-file="showContent($fileContent, $filePath)" style="display:inline;" />
-        <div ng-if="proyects" ng-repeat="proyect in proyects">
-            <h2>{{proyect.name}}</h2>
-            <img ng-src="{{proyect.icon}}" height="100" width="100"/>
-        </div>
+      <h2>{{name}}</h2>
+      <span class="glyphicon glyphicon-plus"></span>
+      <input id="addFile" type="file" on-read-file="showContent($fileContent, $filePath)" style="display:inline;" />
+      <button class="btn-primary " ng-click="readFile()">Reload</button>
+      <div ng-repeat="proyect in proyects">
+          <h2>{{proyect.name}}</h2>
+          <img ng-src="{{proyect.icon}}" height="100" width="100"/>
+      </div>
   	</div>
+    <script data-main="js/config.js" src="bower_components/requirejs/require.js"></script>
   </body>
 </html>
