@@ -5,9 +5,6 @@ const ipc = electron.ipcMain;
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
-const fs = require('fs');
-const prompt = require('prompt');
-
 let mainWindow;
 
 //var Tray = electron.Tray;
@@ -15,28 +12,19 @@ let mainWindow;
 //var path = require('path');
 
 //var trayIcon = null;
-prompt.start();
 
-
-prompt.get(['asd?'], function (err, result) {
-    console.log(result);
-  });
-
-ipc.on('asynchronous-message', function(event, arg) {
-  //console.log(arg);  // prints "ping"
-  //event.sender.send('asynchronous-reply', 'pong');
-  fs.writeFile('config.json', arg, 'utf8', (err) => {
-    if (err) throw err;
-    console.log(arg);
-  });
-});
 
 /*ipc.on('synchronous-message', function(event, arg) {
   console.log(arg);  // prints "ping"
   event.returnValue = 'pong';
 });*/
 
+var exec = require('child_process').exec;
+var cmd = 'mkdir isWorking';
 
+exec(cmd, function(error, stdout, stderr) {
+  // command output is in stdout
+});
 
 function createWindow () {
   mainWindow = new BrowserWindow(
