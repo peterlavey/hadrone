@@ -1,6 +1,6 @@
 define(['./module'], (controllers)=>{
   'use strict';
-  controllers.controller('Dashboard', ['$scope', 'Test', ($scope, Test)=>{
+  controllers.controller('DashboardCtrl', ['$scope', 'FileService', '$document', ($scope, FileService, $document)=>{
     $scope.name="Hadrone";
     $scope.proyects=[];
 
@@ -9,32 +9,19 @@ define(['./module'], (controllers)=>{
       let filePath = $filePath.substring(0, $filePath.length - 12);
       let img = filePath + 'icon.png';
 
-      $scope.writeFile({'name':$scope.file.name, 'url':filePath, 'icon':img});
+      $scope.proyects.push({'name':$scope.file.name, 'url':filePath, 'icon':img});
+      FileService.writeFile($scope.proyects);
+      $scope.readFile();
     };
 
-    const fs = require('fs');
+    $scope.readFile = ()=> FileService.readFile().success((data)=>{
+      if(data) $scope.proyects=data;
+    }).error((err)=>{
+      console.log("Error!!! Error!!! Destruir!! D:<");
+    });
 
-    $scope.readFile = ()=>{
-      fs.stat('config.json', (err, stats)=>{
-        if (!err && stats.isFile()){
-          fs.readFile('config.json', 'utf8', (err, data) => {
-            if (err) throw err;
-            $scope.proyects=JSON.parse(data);
-          });
-        }
-      });
-    };
-
-    $scope.writeFile = ($obj)=>{
-      const ipcRenderer = require('electron').ipcRenderer;
-      $scope.proyects.push($obj);
-      //ipcRenderer.send('asynchronous-message', JSON.stringify($scope.fileConfig));
-      fs.writeFile('config.json', JSON.stringify($scope.proyects), 'utf8', (err) => {
-        if (err) throw err;
-        $scope.readFile();
-      });
-    };
-    angular.element(document).ready(()=>$scope.readFile());
+    //TODO No actualiza la lista al iniciar la aplicación
+    angular.element($document).ready(()=>$scope.readFile());
 
   }]);
 });
