@@ -3,6 +3,7 @@ define(['./module'], (controllers)=>{
   controllers.controller('DashboardCtrl', ['$scope', 'FileService', '$document', ($scope, FileService, $document)=>{
     $scope.name="Hadrone";
     $scope.proyects=[];
+    $scope.config = require('../config/electron.config');
 
     $scope.showContent = ($fileContent, $filePath)=>{
       $scope.file = JSON.parse($fileContent);

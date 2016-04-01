@@ -11,7 +11,7 @@ requirejs.config({
     'angular':{
       deps:['jquery'],
       exports:'angular'
-    },
+    }
     /*'angular-ui-router':{
       deps:['angular']
     },

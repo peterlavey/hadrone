@@ -4,6 +4,7 @@ const electron = require('electron');
 const ipc = electron.ipcMain;
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
+const config = require('./config/electron.config');
 
 let mainWindow;
 
@@ -27,19 +28,9 @@ exec(cmd, function(error, stdout, stderr) {
 });
 
 function createWindow () {
-  mainWindow = new BrowserWindow(
-  {
-    width: 800,
-    height: 600,
-    frame: true,
-    resizable: true,
-    fullscreen: true,
-    transparent: true,
-    //backgroundColor: '#000',
-    icon:__dirname+'/img/icon.png'
-  });
+  mainWindow = new BrowserWindow(config.windowConfig());
 
-  mainWindow.loadURL('file://' + __dirname + '/app/index.html');
+  mainWindow.loadURL(config.pathStartup());
   mainWindow.webContents.openDevTools();
 
   mainWindow.on('closed', ()=>{
