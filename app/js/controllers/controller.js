@@ -8,7 +8,8 @@ define(['./module'], (controllers)=>{
     $scope.showContent = ($fileContent, $filePath)=>{
       $scope.file = JSON.parse($fileContent);
       let filePath = $filePath.substring(0, $filePath.length - 12);
-      let img = filePath + 'icon.png';
+      //let img = filePath + 'icon.png';
+      let img = $scope.config.windowConfig().icon;
 
       $scope.proyects.push({'name':$scope.file.name, 'url':filePath, 'icon':img});
       FileService.writeFile($scope.proyects);

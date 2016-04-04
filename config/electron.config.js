@@ -7,7 +7,8 @@ return   {
     fullscreen: true,
     transparent: true,
     //backgroundColor: '#000',
-    icon: __dirname + '/img/icon.png'
+    icon: __dirname + '/img/icon.png',
+    dirname: __dirname
   }
 };
 exports.pathStartup = ()=> 'file://' + __dirname + '/../app/index.html';
