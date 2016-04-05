@@ -5,6 +5,14 @@ define(['./module'], (controllers)=>{
     $scope.proyects=[];
     $scope.config = require('../config/electron.config');
 
+    $scope.uploadImage = (index, $fileContent, $filePath)=>{
+      //TODO: Escribir el archivo en la aplicación y darle esa ruta al fs.
+      $scope.proyects[index].icon=$scope.config.windowConfig().dirname+'\\img\\'+$scope.proyects[index].name+'.png';
+      FileService.copyFile($filePath, $scope.config.windowConfig().dirname+'\\img\\', $scope.proyects[index].name+'.png');
+      FileService.writeFile($scope.proyects);
+      $scope.readFile();
+    };
+
     $scope.showContent = ($fileContent, $filePath)=>{
       $scope.file = JSON.parse($fileContent);
       let filePath = $filePath.substring(0, $filePath.length - 12);
