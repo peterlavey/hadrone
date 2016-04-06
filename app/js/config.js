@@ -3,7 +3,7 @@ requirejs.config({
   paths:{
     'domReady':'../bower_components/domReady/domReady',
     'angular':'../bower_components/angular/angular.min',
-    //'angular-ui-router':'angular-route/release/angular-ui-router.min',
+    'uiRouter':'../bower_components/angular-ui-router/release/angular-ui-router.min',
     //'bootstrap':'bootstrap/dist/js/bootstrap.min',
     'jquery':'../bower_components/jquery/dist/jquery.min'
   },
@@ -11,10 +11,10 @@ requirejs.config({
     'angular':{
       deps:['jquery'],
       exports:'angular'
-    }
-    /*'angular-ui-router':{
-      deps:['angular']
     },
+    'uiRouter':{
+      deps:['angular']
+    }/*,
     'bootstrap':{
       deps:['jquery']
     }*/

@@ -6,7 +6,6 @@ define(['./module'], (controllers)=>{
     $scope.config = require('../config/electron.config');
 
     $scope.uploadImage = (index, $fileContent, $filePath)=>{
-      //TODO: Escribir el archivo en la aplicación y darle esa ruta al fs.
       $scope.proyects[index].icon=$scope.config.windowConfig().dirname+'\\img\\'+$scope.proyects[index].name+'.png';
       FileService.copyFile($filePath, $scope.config.windowConfig().dirname+'\\img\\', $scope.proyects[index].name+'.png');
       FileService.writeFile($scope.proyects);
@@ -30,7 +29,6 @@ define(['./module'], (controllers)=>{
       console.log("Error!!! Error!!! Destruir!! D:<");
     });
 
-    //TODO No actualiza la lista al iniciar la aplicación
     angular.element($document).ready(()=>$scope.readFile());
 
   }]);

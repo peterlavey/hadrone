@@ -17,6 +17,7 @@
           		<a class="navbar-brand" rel="home" href="/" title="Hadrone">
             			<img ng-src="{{config.windowConfig().icon}}" alt="" height="25" width="25" />
           		</a>
+              <a ui-sref="home" class="navbar-brand">{{name}}</a>
         		</div>
 
         		<div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -54,20 +55,8 @@
             		</ul>
         		</div>
           </div>
-  	</header>
-  	<div class="wrapper">
-      <h2>{{name}}</h2>
-      <ul ng-repeat="proyect in proyects" class="list-group">
-          <li class="list-group-item">
-                <h2>{{proyect.name}}</h2>
-                <img ng-src="{{proyect.icon}}" height="100" width="100"/>
-                <div class="inputWrapper">
-                    <i class="glyphicon glyphicon-bell"></i>
-                    <input id="addImage" class="fileInput" type="file" on-read-file="uploadImage($index, $fileContent, $filePath)" style="display:inline;" />
-                </div>
-          </li>
-      </ul>
-  	</div>
+  	   </header>
+    <div ui-view></div>
     <script data-main="js/config.js" src="bower_components/requirejs/require.js"></script>
   </body>
 </html>
