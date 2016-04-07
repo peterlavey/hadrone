@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   	<link rel="stylesheet" href="css/style.css">
   </head>
-  <body ng-controller="DashboardCtrl">
+  <body ng-controller="MainCtrl">
       <header>
-      	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      	<div ng-controller="MenuCtrl" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         		<div class="navbar-header">
-          		<a class="navbar-brand" data-toggle="offcanvas">
+          		<a ui-sref="dashboard" class="navbar-brand" data-toggle="offcanvas">
             			<span class="glyphicon glyphicon-menu-hamburger"></span>
           		</a>
           		<a class="navbar-brand" rel="home" href="/" title="Hadrone">
@@ -33,14 +33,19 @@
                 			</div>
               		</form>
             		</ul>
-            		<ul class="col-xs-3 nav navbar-nav">
+            		<ul class="col-xs-3 nav navbar-nav options">
                 		<li>
                       <div class="inputWrapper">
-                          <a href="#" id="config">Add Proyect <span class="glyphicon glyphicon-plus"></span></a>
+                          <a href="#" id="add">Add Proyect <span class="glyphicon glyphicon-plus"></span></a>
                           <input id="addFile" class="fileInput" type="file" on-read-file="showContent($fileContent, $filePath)" style="display:inline;" />
                       </div>
                     </li>
-                		<li><a href="#" id="config">Config</a></li>
+                    <li>
+                      <div class="inputWrapper">
+                          <a href="#" id="edit">Edit <span class="glyphicon glyphicon-plus"></span></a>
+                          <input id="addImage" class="fileInput" type="file" on-read-file="uploadImage(0, $filePath)" style="display:inline;" />
+                      </div>
+                    </li>
             		</ul>
            		 <ul class="col-xs-2 nav navbar-nav">
               		<li>
@@ -56,7 +61,9 @@
         		</div>
           </div>
   	   </header>
-    <div ui-view></div>
+       <div id="wrapper">
+          <div ui-view></div>
+       </div>
     <script data-main="js/config.js" src="bower_components/requirejs/require.js"></script>
   </body>
 </html>

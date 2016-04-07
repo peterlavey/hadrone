@@ -4,10 +4,11 @@
     overflow: hidden;
     position: relative;
     cursor: pointer;
-    margin-top: 16%;
+    /*margin-top: 16%;*/
     /*Using a background color, but you can use a background image to represent a button*/
     /*background-color: #DDF;*/
 }
+
 .fileInput {
     cursor: pointer;
     height: 100%;
@@ -21,4 +22,22 @@
     opacity: 0;
     -moz-opacity: 0;
     filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0)
+}
+
+#wrapper{
+  padding: 3% 5%;
+}
+
+.options li{
+  margin: 4% 5% 0 5%;
+}
+
+.proyect-panel{
+  width: 15%;
+  display: inline-block;
+  margin: 1%;
+}
+
+.proyect-panel .img-responsive{
+  margin: 0 auto;
 }

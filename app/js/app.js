@@ -6,6 +6,10 @@ define(['angular', 'uiRouter', './controllers/controller', './directives/directi
       url: '/dashboard',
       templateUrl: 'components/dashboard.html'
     })
+    .state('detail',{
+      url: '/detail',
+      templateUrl: 'components/detail.html'
+    })
     .state('home',{
       url: '/home',
       templateUrl: 'components/home.html'

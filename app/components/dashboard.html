@@ -1,11 +1,6 @@
-<h2>{{name}}</h2>
-<ul ng-repeat="proyect in proyects" class="list-group">
-    <li class="list-group-item">
-          <h2>{{proyect.name}}</h2>
-          <img ng-src="{{proyect.icon}}" height="100" width="100"/>
-          <div class="inputWrapper">
-              <i class="glyphicon glyphicon-bell"></i>
-              <input id="addImage" class="fileInput" type="file" on-read-file="uploadImage($index, $fileContent, $filePath)" style="display:inline;" />
-          </div>
-    </li>
-</ul>
+<div ng-controller="DashboardCtrl" class="panel-group" >
+  <div ui-sref="detail" ng-repeat="proyect in proyects track by proyect.name" class="panel panel-default proyect-panel">
+    <h2 align="center">{{proyect.name}}</h2>
+    <img ng-src="{{proyect.icon}}" class="img-responsive" height="100" width="100"/>
+  </div>
+</div>
