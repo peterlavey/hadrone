@@ -1,3 +1,8 @@
-<<div ng-controller="DetailCtrl">
-  <h1>{{name}}</h1>
+<div ng-controller="DetailCtrl">
+  <h1>{{proyect.name}}</h1>
+  <img ng-src="{{proyect.icon}}" class="img-responsive" height="100" width="100"/>
+  <select name="scripts" id="scripts" ng-model="cmd">
+    <option ng-repeat="script in proyect.scripts" value="{{script}}">{{script}}</option>
+  </select>
+  <button ng-click="startApi()" class="btn btn-primary">Start API</button>
 </div>

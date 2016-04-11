@@ -43,7 +43,7 @@
                     <li>
                       <div class="inputWrapper">
                           <a href="#" id="edit">Edit <span class="glyphicon glyphicon-plus"></span></a>
-                          <input id="addImage" class="fileInput" type="file" on-read-file="uploadImage(0, $filePath)" style="display:inline;" />
+                          <input id="addImage" class="fileInput" type="file" on-read-file="uploadImage($parent.proyect.index, $filePath)" style="display:inline;" />
                       </div>
                     </li>
             		</ul>
