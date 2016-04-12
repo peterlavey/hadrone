@@ -1,4 +1,4 @@
-define(['./module'], (controllers)=>{
+define(['./module', 'jquery'], (controllers, $)=>{
   'use strict';
 
   controllers.controller('MainCtrl', ['$scope', 'FileService', '$document', ($scope, FileService, $document)=>{
@@ -43,18 +43,20 @@ define(['./module'], (controllers)=>{
 
   controllers.controller('DetailCtrl', ['$scope', ($scope)=>{
     $scope.proyect=$scope.$parent.proyects[$scope.$parent.proyect.index];
-    $scope.commmand;
-    $scope.logs=[];
+    $scope.command={
+      prompt:'',
+      logs:[]
+    };
     $scope.startApi=()=>{
-      let promptArray=$scope.commmand.split(" ");
+      let promptArray=$scope.commmand.prompt.split(" ");
       let node=promptArray.shift();
       let promptArgs=promptArray;
       const spawn = require('child_process').spawn;
 
       let exec = spawn(node, promptArgs, {cwd:$scope.proyect.url});
-      exec .stdout.on('data', (data)=> {
+      exec.stdout.on('data', (data)=> {
         console.log('stdout: ' + data)
-        $scope.logs.push(data.toString());
+        $('#logContainer').append('<span>'+data.toString()+'</span></br>')
       });
     };
   }])

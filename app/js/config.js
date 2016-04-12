@@ -8,6 +8,9 @@ requirejs.config({
     'jquery':'../bower_components/jquery/dist/jquery.min'
   },
   shim:{
+    'jquery':{
+      exports:'$'
+    },
     'angular':{
       deps:['jquery'],
       exports:'angular'
