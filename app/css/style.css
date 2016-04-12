@@ -46,6 +46,15 @@
   margin: 0 auto;
 }
 
+.prompt{
+   min-height: 35em;
+   background-color: #000;
+}
+
+.prompt span{
+   color: #18F000;
+}
+
 /*div.avatar {
     height: 35px;
     width: 35px;

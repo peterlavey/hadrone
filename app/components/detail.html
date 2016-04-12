@@ -1,17 +1,22 @@
 <div ng-controller="DetailCtrl">
    <div class="col-md-4 panel panel-default" style="min-height: 48em;">
-      <div class="row">
-         <img ng-src="{{proyect.icon}}" class="img-responsive col-md-3" height="100" width="100"/>
-         <h3 class="col-md-7">{{proyect.name}}</h3>
-         <span class="label label-primary col-md-2">{{proyect.version}}</span>
+      <div class="panel-body">
+         <div class="row">
+            <img ng-src="{{proyect.icon}}" class="img-responsive col-md-3" height="100" width="100"/>
+            <h3 class="col-md-7">{{proyect.name}}</h3>
+            <span class="label label-primary col-md-2">{{proyect.version}}</span>
+         </div>
+         <div class="row">
+            <strong class="col-md-3">Description: </strong>
+            <span class="col-md-9">{{proyect.description}}</span>
+         </div>
+         <div class="row">
+            <strong class="col-md-3">Author: </strong>
+            <span class="col-md-9">{{proyect.author}}</span>
+         </div>
       </div>
-      <div class="row">
-         <strong class="col-md-3">Description: </strong>
-         <span class="col-md-9">{{proyect.description}}</span>
-      </div>
-      <div class="row">
-         <strong class="col-md-3">Author: </strong>
-         <span class="col-md-9">{{proyect.author}}</span>
+      <div class="panel-footer prompt">
+         
       </div>
    </div>
    <div class="col-md-8">

@@ -65,7 +65,7 @@ define(['./module', 'jquery'], (controllers, $)=>{
          let exec = spawn(node, promptArgs, {cwd:$scope.proyect.url});
          exec.stdout.on('data', (data)=> {
             console.log('stdout: ' + data)
-            $('#logContainer').append('<span>'+data.toString()+'</span></br>')
+            $('.prompt').append('<span>> '+data.toString()+'</span></br>')
          });
       };
    }])
