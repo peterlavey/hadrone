@@ -25,6 +25,10 @@
 }
 
 #wrapper{
+   margin-top: 4%;
+}
+
+.padding-frame{
   padding: 3% 5%;
 }
 
@@ -41,3 +45,12 @@
 .proyect-panel .img-responsive{
   margin: 0 auto;
 }
+
+/*div.avatar {
+    height: 35px;
+    width: 35px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 100% auto;
+}*/

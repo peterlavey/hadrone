@@ -1,4 +1,4 @@
 define(['angular'], (ng)=>{
-  'use strict';
-  return ng.module('app.controllers', []);
+   'use strict';
+   return ng.module('app.controllers', []);
 });
