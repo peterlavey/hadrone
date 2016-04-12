@@ -43,24 +43,19 @@ define(['./module'], (controllers)=>{
 
   controllers.controller('DetailCtrl', ['$scope', ($scope)=>{
     $scope.proyect=$scope.$parent.proyects[$scope.$parent.proyect.index];
-    $scope.cmd;
-
+    $scope.commmand;
+    $scope.logs=[];
     $scope.startApi=()=>{
-      var exec = require('child_process').exec;
-      var execSync = require('child_process').execSync;
-      var cmd = 'cd '+ $scope.proyect.url;
+      let promptArray=$scope.commmand.split(" ");
+      let node=promptArray.shift();
+      let promptArgs=promptArray;
+      const spawn = require('child_process').spawn;
 
-      execSync($scope.cmd, {cwd:$scope.proyect.url}, (error, stdout, stderr)=>{
-        if(error) console.log(error);
-        console.log(stdout);
-      })
-      /*exec(cmd, function(error, stdout, stderr) {
-        if(error) console.log(error);
-        exec($scope.cmd, function(error, stdout, stderr) {
-          if(error) console.log(error);
-          console.log(stdout);
-        })
-      });*/
+      let exec = spawn(node, promptArgs, {cwd:$scope.proyect.url});
+      exec .stdout.on('data', (data)=> {
+        console.log('stdout: ' + data)
+        $scope.logs.push(data.toString());
+      });
     };
   }])
 });
