@@ -1,0 +1,51 @@
+<div ng-controller="MenuCtrl" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+   <div class="navbar-header">
+      <a ui-sref="dashboard" class="navbar-brand" data-toggle="offcanvas">
+         <span class="glyphicon glyphicon-menu-hamburger"></span>
+      </a>
+      <a class="navbar-brand" rel="home" href="/" title="Hadrone">
+         <img ng-src="{{config.windowConfig().icon}}" alt="" height="25" width="25" />
+      </a>
+      <a ui-sref="home" class="navbar-brand">{{name}}</a>
+   </div>
+
+   <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="col-xs-5 nav navbar-nav">
+         <form class="navbar-form" role="search">
+            <div class="col-xs-12 input-group">
+               <input type="text" class="form-control" placeholder="Buscar..." name="srch-term" id="srch-term"></input>
+               <div class="input-group-btn">
+                  <button class="btn btn-default" type="submit">
+                     <i class="glyphicon glyphicon-search"></i>
+                  </button>
+               </div>
+            </div>
+         </form>
+      </ul>
+      <ul class="col-xs-3 nav navbar-nav options">
+         <li>
+            <div class="inputWrapper">
+               <a href="#" id="add">Add Proyect <span class="glyphicon glyphicon-plus"></span></a>
+               <input id="addFile" class="fileInput" type="file" on-read-file="showContent($fileContent, $filePath)" style="display:inline;" />
+            </div>
+         </li>
+         <li>
+            <div class="inputWrapper">
+               <a href="#" id="edit">Edit <span class="glyphicon glyphicon-plus"></span></a>
+               <input id="addImage" class="fileInput" type="file" on-read-file="uploadImage($parent.proyect.index, $filePath)" style="display:inline;" />
+            </div>
+         </li>
+      </ul>
+      <ul class="col-xs-2 nav navbar-nav">
+         <li>
+            <a href="#">
+               <span class="glyphicon glyphicon-bell"></span>
+               <span class="badge">5</span>
+            </a>
+         </li>
+         <li>
+            <a href="#">Juan Perez</a>
+         </li>
+      </ul>
+   </div>
+</div>

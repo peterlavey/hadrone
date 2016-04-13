@@ -1,6 +1,6 @@
-define(['./module'], (constants)=>{
+define(['./module'], (app)=>{
    'use strict';
-   constants.constant('COMMANDS', {
+   app.constant('COMMANDS', {
       "NODE":"node"
    });
 });

@@ -1,7 +1,7 @@
-define(['./module', 'jquery'], (controllers, $)=>{
+define(['./module', 'jquery'], (app, $)=>{
   'use strict';
 
-   controllers.controller('MainCtrl', ['$scope', 'FileService', '$document', ($scope, FileService, $document)=>{
+   app.controller('MainCtrl', ['$scope', 'FileService', '$document', ($scope, FileService, $document)=>{
       $scope.name="Hadrone";
       $scope.proyect={
          index: null
@@ -16,7 +16,7 @@ define(['./module', 'jquery'], (controllers, $)=>{
       angular.element($document).ready(()=>$scope.readFile());
    }]);
 
-   controllers.controller('MenuCtrl', ['$scope', 'FileService', ($scope, FileService)=>{
+   app.controller('MenuCtrl', ['$scope', 'FileService', ($scope, FileService)=>{
       $scope.showContent = ($fileContent, $filePath)=>{
          $scope.file = JSON.parse($fileContent);
          let filePath = $filePath.substring(0, $filePath.length - 12);
@@ -44,13 +44,13 @@ define(['./module', 'jquery'], (controllers, $)=>{
       };
    }]);
 
-   controllers.controller('DashboardCtrl', ['$scope', ($scope)=>{
+   app.controller('DashboardCtrl', ['$scope', ($scope)=>{
       $scope.setProyectIndex = (index)=>{
          $scope.$parent.proyect.index=index;
       }
    }]);
 
-   controllers.controller('DetailCtrl', ['$scope', 'COMMANDS', ($scope, COMMANDS)=>{
+   app.controller('DetailCtrl', ['$scope', 'COMMANDS', ($scope, COMMANDS)=>{
       const spawn = require('child_process').spawn;
       $scope.proyect=$scope.$parent.proyects[$scope.$parent.proyect.index];
       $scope.command={

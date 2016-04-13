@@ -1,6 +1,6 @@
-define(['./module'], (directives)=>{
-  'use strict';
-  directives.directive('onReadFile', ['$parse', ($parse)=>{
+define(['./module'], (app)=>{
+   'use strict';
+   app.directive('onReadFile', ['$parse', ($parse)=>{
 		return {
 			restrict: 'A',
 			scope: false,
@@ -14,4 +14,11 @@ define(['./module'], (directives)=>{
 			}
 		};
 	}]);
+   app.directive('menu', [()=>{
+      return {
+         restrict: 'E',
+         transclude: true,
+         templateUrl:'js/directives/templates/menu.html'
+      }
+   }]);
 });

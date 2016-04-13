@@ -1,7 +1,7 @@
-define(['./module'], (config)=>{
+define(['./module'], (app)=>{
   'use strict';
 
-   config.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider)=> {
+   app.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider)=> {
    $stateProvider.state('dashboard',{
       url: '/dashboard',
       templateUrl: 'components/dashboard.html'
