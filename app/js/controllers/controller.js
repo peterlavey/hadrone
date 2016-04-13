@@ -50,7 +50,7 @@ define(['./module', 'jquery'], (controllers, $)=>{
       }
    }]);
 
-   controllers.controller('DetailCtrl', ['$scope', ($scope)=>{
+   controllers.controller('DetailCtrl', ['$scope', 'COMMANDS', ($scope, COMMANDS)=>{
       const spawn = require('child_process').spawn;
       $scope.proyect=$scope.$parent.proyects[$scope.$parent.proyect.index];
       $scope.command={
@@ -69,7 +69,7 @@ define(['./module', 'jquery'], (controllers, $)=>{
          });
       };
       $scope.startNode=()=>{
-         let node='node';
+         let node= COMMANDS.NODE;
          let exec = spawn(node, [$scope.proyect.main], {cwd:$scope.proyect.url});
          exec.stdout.on('data', (data)=> {
             console.log('stdout: ' + data)

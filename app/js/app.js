@@ -1,6 +1,6 @@
-define(['angular', 'uiRouter', './controllers/controller', './directives/directive', './services/service'], (ng)=>{
+define(['angular', 'uiRouter', './controllers/controller', './directives/directive', './services/service', './constants/constants'], (ng)=>{
    'use strict';
-   return ng.module('app', ['ui.router', 'app.controllers', 'app.directives', 'app.services'])
+   return ng.module('app', ['ui.router', 'app.controllers', 'app.directives', 'app.services', 'app.constants'])
    .config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider)=> {
    $stateProvider.state('dashboard',{
       url: '/dashboard',
