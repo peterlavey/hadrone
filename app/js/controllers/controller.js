@@ -26,6 +26,7 @@ define(['./module', 'jquery'], (controllers, $)=>{
             'name':$scope.file.name,
             'version':$scope.file.version,
             'description':$scope.file.description,
+            'main':$scope.file.main,
             'repository':$scope.file.repository,
             'author':$scope.file.author,
             'url':filePath,
@@ -37,10 +38,9 @@ define(['./module', 'jquery'], (controllers, $)=>{
       };
 
       $scope.uploadImage = (index, $filePath)=>{
-         $scope.proyects[index].icon=$scope.config.windowConfig().dirname+'\\img\\'+$scope.proyects[index].name+'.png';
+         $scope.proyects[index].icon=$filePath;
          FileService.copyFile($filePath, $scope.config.windowConfig().dirname+'\\img\\', $scope.proyects[index].name+'.png');
          FileService.writeFile($scope.proyects);
-         $scope.readFile();
       };
    }]);
 
@@ -51,6 +51,7 @@ define(['./module', 'jquery'], (controllers, $)=>{
    }]);
 
    controllers.controller('DetailCtrl', ['$scope', ($scope)=>{
+      const spawn = require('child_process').spawn;
       $scope.proyect=$scope.$parent.proyects[$scope.$parent.proyect.index];
       $scope.command={
          'prompt':'',
@@ -60,7 +61,6 @@ define(['./module', 'jquery'], (controllers, $)=>{
          let promptArray=$scope.command.prompt.split(" ");
          let node=promptArray.shift();
          let promptArgs=promptArray;
-         const spawn = require('child_process').spawn;
 
          let exec = spawn(node, promptArgs, {cwd:$scope.proyect.url});
          exec.stdout.on('data', (data)=> {
@@ -68,5 +68,13 @@ define(['./module', 'jquery'], (controllers, $)=>{
             $('.prompt').append('<span>> '+data.toString()+'</span></br>')
          });
       };
+      $scope.startNode=()=>{
+         let node='node';
+         let exec = spawn(node, [$scope.proyect.main], {cwd:$scope.proyect.url});
+         exec.stdout.on('data', (data)=> {
+            console.log('stdout: ' + data)
+            $('.prompt').append('<span>> '+data.toString()+'</span></br>')
+         });
+      }
    }])
 });

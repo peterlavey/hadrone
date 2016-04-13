@@ -20,13 +20,6 @@ let mainWindow;
   event.returnValue = 'pong';
 });*/
 
-var exec = require('child_process').exec;
-var cmd = 'mkdir isWorking';
-
-exec(cmd, function(error, stdout, stderr) {
-  // command output is in stdout
-});
-
 function createWindow () {
   mainWindow = new BrowserWindow(config.windowConfig());
 

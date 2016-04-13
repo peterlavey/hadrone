@@ -16,11 +16,11 @@
          </div>
       </div>
       <div class="panel-footer prompt">
-         
+
       </div>
    </div>
    <div class="col-md-8">
-      <div ng-if="proyect.scripts" id="scriptsContainer">
+      <div ng-if="proyect.scripts">
          <div class="row">
             <div class="col-md-6">
                <select ng-model="command.prompt" class="form-control">
@@ -28,6 +28,11 @@
                </select>
             </div>
             <button ng-click="startApi()" class="btn btn-primary">Start API</button>
+         </div>
+      </div>
+      <div>
+         <div class="row">
+            <button ng-click="startNode()" class="btn btn-primary">Start NODE</button>
          </div>
       </div>
       <div id="logContainer"></div>
