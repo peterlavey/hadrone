@@ -4,19 +4,29 @@ define(['./module', 'jquery'], (app, $)=>{
    app.controller('MainCtrl', ['$scope', 'FileService', '$document', ($scope, FileService, $document)=>{
       $scope.name="Hadrone";
       $scope.proyect={
-         index: null
+         index: null,
+         view: ''
       };
       $scope.proyects=[];
+
       $scope.config = require('../config/electron.config');
+
       $scope.readFile = ()=> FileService.readFile().success((data)=>{
          if(data) $scope.proyects=data;
       }).error((err)=>{
          console.log("Error!!! Error!!! Destruir!! D:<");
       });
+
       angular.element($document).ready(()=>$scope.readFile());
    }]);
 
-   app.controller('MenuCtrl', ['$scope', 'FileService', ($scope, FileService)=>{
+   app.controller('HeaderCtrl', ['$scope', 'FileService', '$state', ($scope, FileService, $state)=>{
+      $scope.$state = $state;
+      $scope.removeProyect=(index)=>{
+         $scope.proyects.splice(index, 1);
+         FileService.writeFile($scope.proyects);
+      }
+
       $scope.showContent = ($fileContent, $filePath)=>{
          $scope.file = JSON.parse($fileContent);
          let filePath = $filePath.substring(0, $filePath.length - 12);
@@ -45,9 +55,7 @@ define(['./module', 'jquery'], (app, $)=>{
    }]);
 
    app.controller('DashboardCtrl', ['$scope', ($scope)=>{
-      $scope.setProyectIndex = (index)=>{
-         $scope.$parent.proyect.index=index;
-      }
+      $scope.setProyectIndex = (index)=> $scope.$parent.proyect.index=index;
    }]);
 
    app.controller('DetailCtrl', ['$scope', 'COMMANDS', ($scope, COMMANDS)=>{

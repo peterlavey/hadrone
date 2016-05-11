@@ -17,8 +17,15 @@ define(['./module'], (app)=>{
    app.directive('menu', [()=>{
       return {
          restrict: 'E',
-         transclude: true,
-         templateUrl:'js/directives/templates/menu.html'
+         //transclude: true,
+         templateUrl:'templates/menu.html'
+      }
+   }]);
+   app.directive('modal', [()=>{
+      return {
+         restrict: 'E',
+         //transclude: true,
+         templateUrl:'templates/modal.html'
       }
    }]);
 });

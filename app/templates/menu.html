@@ -1,4 +1,4 @@
-<div ng-controller="MenuCtrl" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div ng-controller="HeaderCtrl" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
    <div class="navbar-header">
       <a ui-sref="dashboard" class="navbar-brand" data-toggle="offcanvas">
          <span class="glyphicon glyphicon-menu-hamburger"></span>
@@ -23,16 +23,21 @@
          </form>
       </ul>
       <ul class="col-xs-3 nav navbar-nav options">
-         <li>
+         <li ng-show="$state.current.name === 'dashboard'">
             <div class="inputWrapper">
                <a href="#" id="add">Add Proyect <span class="glyphicon glyphicon-plus"></span></a>
                <input id="addFile" class="fileInput" type="file" on-read-file="showContent($fileContent, $filePath)" style="display:inline;" />
             </div>
          </li>
-         <li>
+         <li ng-show="$state.current.name === 'detail'">
             <div class="inputWrapper">
                <a href="#" id="edit">Edit <span class="glyphicon glyphicon-plus"></span></a>
                <input id="addImage" class="fileInput" type="file" on-read-file="uploadImage($parent.proyect.index, $filePath)" style="display:inline;" />
+            </div>
+         </li>
+         <li ng-show="$state.current.name === 'detail'">
+            <div class="inputWrapper">
+               <a ng-click="removeProyect($parent.proyect.index)" href="#" id="remove">Remove <span class="glyphicon glyphicon-plus"></span></a>
             </div>
          </li>
       </ul>

@@ -1,11 +1,11 @@
 requirejs.config({
-  //baseUrl: 'bower_components',
+   //baseUrl: '/',
    paths:{
       'domReady':'../bower_components/domReady/domReady',
       'angular':'../bower_components/angular/angular.min',
       'uiRouter':'../bower_components/angular-ui-router/release/angular-ui-router.min',
-      //'bootstrap':'bootstrap/dist/js/bootstrap.min',
-      'jquery':'../bower_components/jquery/dist/jquery.min'
+      'jquery':'../bower_components/jquery/dist/jquery.min',
+      //'bootstrap':'../bower_components/bootstrap/js'
    },
    shim:{
       'jquery':{
@@ -17,10 +17,7 @@ requirejs.config({
       },
       'uiRouter':{
          deps:['angular']
-      }/*,
-      'bootstrap':{
-         deps:['jquery']
-      }*/
+      }
    },
    deps:['../js/bootstrap']
 });

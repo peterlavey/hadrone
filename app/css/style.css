@@ -29,21 +29,30 @@
 }
 
 .padding-frame{
-  padding: 3% 5%;
+   padding: 3% 5%;
 }
 
 .options li{
-  margin: 4% 5% 0 5%;
+   margin: 4% 5% 0 5%;
 }
 
 .proyect-panel{
-  width: 15%;
-  display: inline-block;
-  margin: 1%;
+   width: 15%;
+   display: inline-block;
+   margin: 1%;
+   min-height: 10em;
+}
+
+.proyect-panel h2{
+   background: rgba(10, 0, 0, 0.75);
+   color: #FFF;
+   /*position: absolute;*/
+   min-width: 13.4%;
+   margin: initial;
 }
 
 .proyect-panel .img-responsive{
-  margin: 0 auto;
+   margin: 0 auto;
 }
 
 .prompt{
