@@ -1,7 +1,7 @@
 'use strict';
 
 const electron = require('electron');
-const ipc = electron.ipcMain;
+//const ipc = electron.ipcMain;
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const config = require('./config/electron.config');

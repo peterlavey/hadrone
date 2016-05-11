@@ -1,6 +1,7 @@
 define(['./module'], (app)=>{
    'use strict';
    app.constant('COMMANDS', {
-      "NODE":"node"
+      "NODE":"node",
+      "NAVIGATE": "explorer"
    });
 });

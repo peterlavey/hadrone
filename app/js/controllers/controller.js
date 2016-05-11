@@ -85,4 +85,16 @@ define(['./module', 'jquery'], (app, $)=>{
          });
       }
    }])
+
+   app.controller('GuideCtrl', ['$scope', 'COMMANDS', ($scope, COMMANDS)=>{
+      const spawn = require('child_process').spawn;
+
+      $scope.openBrowser=(url)=>{
+         let navigate= COMMANDS.NAVIGATE;
+         let exec = spawn(navigate, [url], {});
+         exec.stdout.on('data', (data)=> {
+            console.log('stdout: ' + data)
+         });
+      }
+   }])
 });

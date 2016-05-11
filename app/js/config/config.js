@@ -14,6 +14,10 @@ define(['./module'], (app)=>{
       url: '/home',
       templateUrl: 'components/home.html'
    })
+   .state('heroku-guide',{
+      url: '/heroku-guide',
+      templateUrl: 'components/heroku-guide.html'
+   })
    $urlRouterProvider.otherwise('/dashboard');
    }]);
 });
