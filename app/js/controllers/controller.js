@@ -24,6 +24,8 @@ define(['./module', 'jquery'], (app, $)=>{
          $scope.proyects.splice($scope.proyects.indexOf(data), 1);
          FileService.writeFile($scope.proyects);
       };
+      $scope.guid=()=> $scope.s4()+$scope.s4()+'-'+$scope.s4()+'-'+$scope.s4()+'-'+$scope.s4()+'-'+$scope.s4()+$scope.s4()+$scope.s4();
+      $scope.s4=()=> Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
    }]);
 
    app.controller('HeaderCtrl', ['$scope', 'FileService', '$state', ($scope, FileService, $state)=>{
@@ -39,6 +41,7 @@ define(['./module', 'jquery'], (app, $)=>{
          let img = $scope.config.windowConfig().icon;
 
          $scope.proyects.push({
+            'id': $scope.guid(),
             'name':$scope.file.name,
             'version':$scope.file.version,
             'description':$scope.file.description,

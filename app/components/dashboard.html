@@ -1,5 +1,5 @@
 <div ng-controller="DashboardCtrl" class="panel-group padding-frame">
-   <div ng-drop="true" ng-drag="true" ng-drag-data="proyect" ng-drop-success="fusion($data, $event, $index)" ng-click="setProyectIndex($index)" ng-repeat="proyect in proyects track by proyect.name" class="panel panel-default proyect-panel">
+   <div ng-drop="true" ng-drag="true" ng-drag-data="proyect" ng-drop-success="fusion($data, $event, $index)" ng-click="setProyectIndex($index)" ng-repeat="proyect in proyects track by proyect.id" class="panel panel-default proyect-panel">
       <span ng-if="proyect.proyects.length" class="badge">{{proyect.proyects.length}}</span>
       <h2 align="center">{{proyect.name}}</h2>
       <img ui-sref="detail" ng-src="{{proyect.icon}}" class="img-responsive" height="100" width="100" />
