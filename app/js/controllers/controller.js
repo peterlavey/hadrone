@@ -1,7 +1,7 @@
 define(['./module', 'jquery'], (app, $)=>{
   'use strict';
 
-   app.controller('MainCtrl', ['$scope', 'FileService', '$document', ($scope, FileService, $document)=>{
+   app.controller('MainCtrl', ['$scope', 'FileService', '$document', '$state', ($scope, FileService, $document, $state)=>{
       $scope.name="Hadrone";
       $scope.proyect={
          index: null,
@@ -19,9 +19,9 @@ define(['./module', 'jquery'], (app, $)=>{
 
       angular.element($document).ready(()=>$scope.readFile());
       $scope.writeLog=(msg)=>$('.prompt').append('<span>> '+msg+'</span></br>');
-      $scope.fusion=(data, e, index)=>{
+      $scope.fusion=(data, handler, index)=>{
          $scope.proyects[index].proyects.push(data);
-         $scope.proyects.splice($scope.proyects.indexOf(data), 1)
+         $scope.proyects.splice($scope.proyects.indexOf(data), 1);
          //FileService.writeFile($scope.proyects);
       };
    }]);

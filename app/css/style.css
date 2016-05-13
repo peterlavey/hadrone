@@ -1,3 +1,7 @@
+.badge{
+   float: right;
+   background-color: red;
+}
 .inputWrapper {
     /*height: 32px;
     width: 64px;*/
