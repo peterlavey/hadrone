@@ -5,6 +5,7 @@ requirejs.config({
       'angular':'../bower_components/angular/angular.min',
       'uiRouter':'../bower_components/angular-ui-router/release/angular-ui-router.min',
       'jquery':'../bower_components/jquery/dist/jquery.min',
+      'ngDraggable': '../bower_components/ngDraggable/ngDraggable'
       //'bootstrap':'../bower_components/bootstrap/js'
    },
    shim:{
@@ -17,6 +18,10 @@ requirejs.config({
       },
       'uiRouter':{
          deps:['angular']
+      },
+      'ngDraggable':{
+         deps:['angular'],
+         exports:'ngDraggable'
       }
    },
    deps:['../js/bootstrap']

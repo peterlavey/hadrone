@@ -1,7 +1,7 @@
 define(['./module'], (app)=>{
    'use strict';
    app.factory('FileService', ['$http', ($http)=>{
-      const fs = require('fs');
+      let fs = require('fs');
       return {
          readFile:()=> $http.get('../config.json'),
          writeFile : ($obj)=> fs.writeFile('config.json', JSON.stringify($obj), 'utf8'),

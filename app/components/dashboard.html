@@ -1,5 +1,9 @@
-<div ng-controller="DashboardCtrl" class="panel-group padding-frame" >
-   <div ng-click="setProyectIndex($index)" ui-sref="detail" ng-repeat="proyect in proyects track by proyect.name" class="panel panel-default proyect-panel">
+<div ng-controller="DashboardCtrl" class="panel-group padding-frame" draggable>
+   <!--<div ng-click="setProyectIndex($index)" ui-sref="detail" ng-repeat="proyect in proyects track by proyect.name" class="panel panel-default proyect-panel">
+      <h2 align="center">{{proyect.name}}</h2>
+      <img ng-src="{{proyect.icon}}" class="img-responsive" height="100" width="100" />
+   </div>-->
+   <div ng-drop="true" ng-drag="true" ng-drag-data="proyect" data-allow-transform="true"  ng-drop-success="fusion($data, $event, $index)" ng-click="setProyectIndex($index)" ng-repeat="proyect in proyects track by proyect.name" class="panel panel-default proyect-panel">
       <h2 align="center">{{proyect.name}}</h2>
       <img ng-src="{{proyect.icon}}" class="img-responsive" height="100" width="100" />
    </div>

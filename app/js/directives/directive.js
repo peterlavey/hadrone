@@ -28,4 +28,28 @@ define(['./module'], (app)=>{
          templateUrl:'templates/modal.html'
       }
    }]);
+   /*app.directive('draggable', [()=>{
+      return (scope, element)=>{
+         var el = element[0];
+         el.draggable=true;
+         el.addEventListener('dragstart', (e)=>{
+            e.dataTransfer.effectAllowed='move';
+            e.dataTransfer.setData('Text', this.id);
+            //this.classList.add('drag');
+            return false;
+         }, false);
+         el.addEventListener('dragend', (e)=>{
+            //this.classList.remove('drag');
+            return false;
+         }, false);
+      }
+   }]);
+   app.directive('droppable', [()=>{
+      return {
+         scope:{},
+         link:(scope, element)=> {
+            var el=element[0];
+         }
+      }
+   }]);*/
 });

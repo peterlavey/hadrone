@@ -37,10 +37,16 @@
 }
 
 .proyect-panel{
-   width: 15%;
+   width: 20%;
    display: inline-block;
    margin: 1%;
-   min-height: 10em;
+   min-height: 12em;
+   max-height: 15em;
+}
+
+.proyect-panel:hover{
+   box-shadow: 2px 10px 15px -1px rgba(0,0,0,0.75);
+   transition: 0.5s;
 }
 
 .proyect-panel h2{
@@ -49,6 +55,7 @@
    /*position: absolute;*/
    min-width: 13.4%;
    margin: initial;
+   font-size: 25px;
 }
 
 .proyect-panel .img-responsive{

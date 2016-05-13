@@ -18,6 +18,12 @@ define(['./module', 'jquery'], (app, $)=>{
       });
 
       angular.element($document).ready(()=>$scope.readFile());
+      $scope.writeLog=(msg)=>$('.prompt').append('<span>> '+msg+'</span></br>');
+      $scope.fusion=(data, e, index)=>{
+         $scope.proyects[index].proyects.push(data);
+         $scope.proyects.splice($scope.proyects.indexOf(data), 1)
+         //FileService.writeFile($scope.proyects);
+      };
    }]);
 
    app.controller('HeaderCtrl', ['$scope', 'FileService', '$state', ($scope, FileService, $state)=>{
@@ -41,7 +47,8 @@ define(['./module', 'jquery'], (app, $)=>{
             'author':$scope.file.author,
             'url':filePath,
             'icon':img,
-            'scripts':$scope.file.scripts
+            'scripts':$scope.file.scripts,
+            'proyects':[]
          });
          FileService.writeFile($scope.proyects);
          $scope.readFile();
@@ -59,7 +66,7 @@ define(['./module', 'jquery'], (app, $)=>{
    }]);
 
    app.controller('DetailCtrl', ['$scope', 'COMMANDS', ($scope, COMMANDS)=>{
-      const spawn = require('child_process').spawn;
+      let spawn = require('child_process').spawn;
       $scope.proyect=$scope.$parent.proyects[$scope.$parent.proyect.index];
       $scope.command={
          'prompt':'',
@@ -73,28 +80,68 @@ define(['./module', 'jquery'], (app, $)=>{
          let exec = spawn(node, promptArgs, {cwd:$scope.proyect.url});
          exec.stdout.on('data', (data)=> {
             console.log('stdout: ' + data)
-            $('.prompt').append('<span>> '+data.toString()+'</span></br>')
+            $scope.writeLog(data.toString());
          });
       };
       $scope.startNode=()=>{
-         let node= COMMANDS.NODE;
-         let exec = spawn(node, [$scope.proyect.main], {cwd:$scope.proyect.url});
+         let exec = spawn(COMMANDS.NODE, [$scope.proyect.main], {cwd:$scope.proyect.url});
          exec.stdout.on('data', (data)=> {
             console.log('stdout: ' + data)
-            $('.prompt').append('<span>> '+data.toString()+'</span></br>')
+            $scope.writeLog(data.toString());
          });
       }
    }])
 
-   app.controller('GuideCtrl', ['$scope', 'COMMANDS', ($scope, COMMANDS)=>{
-      const spawn = require('child_process').spawn;
+   app.controller('GuideCtrl', ['$scope', 'COMMANDS', 'HEROKU', ($scope, COMMANDS, HEROKU)=>{
+      let spawn = require('child_process').spawn;
+
+      $scope.toolbelt=HEROKU.TOOLBELT;
+      $scope.register=HEROKU.REGISTER;
+
+      $scope.profile={
+         user:'',
+         pass:''
+      };
+
+      $scope.loginHeroku2=()=>{
+         let exec = spawn(COMMANDS.HEROKU, [COMMANDS.LOGIN], {});
+         exec.stdout.on('data', (data)=> {
+            console.log('stdout: ' + data);
+         });
+      };
+
+      $scope.loginHeroku=()=>{
+         let asd = require('child_process').exec;
+         let exec = asd(COMMANDS.HEROKU + ' ' + COMMANDS.LOGIN, {});
+         exec.stdout.on('data', (data)=> {
+            console.log('stdout: ' + data);
+         });
+         exec.stderr.on('data', (data)=> {
+            console.log('stderr: ' + data);
+            exec.stdin.write('asd');
+         });
+         exec.on('Email:', (data)=> {
+            console.log('stderr: ' + data);
+
+         });
+      };
+
+      $scope.loginHeroku4=()=>{
+         let spawnSync = require('child_process').spawnSync;
+         let exec = spawnSync(COMMANDS.HEROKU, [COMMANDS.LOGIN], {input:'stdout'});
+         exec.stdout.on('data', (data)=> {
+            console.log('stdout: ' + data);
+         });
+         exec.stderr.on('data', (data)=> {
+            console.log('stderr: ' + data);
+         });
+      };
 
       $scope.openBrowser=(url)=>{
-         let navigate= COMMANDS.NAVIGATE;
-         let exec = spawn(navigate, [url], {});
+         let exec = spawn(COMMANDS.NAVIGATE, [url], {});
          exec.stdout.on('data', (data)=> {
             console.log('stdout: ' + data)
          });
-      }
+      };
    }])
 });
