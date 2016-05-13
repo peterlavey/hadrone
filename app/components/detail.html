@@ -15,9 +15,21 @@
             <span class="col-md-9">{{proyect.author}}</span>
          </div>
       </div>
-      <div class="panel-footer prompt">
-
+      <div ng-show="proyect.scripts" class="row">
+         <div class="col-md-6">
+            <select ng-model="command.prompt" class="form-control">
+               <option ng-repeat="script in proyect.scripts" value="{{script}}">{{script}}</option>
+            </select>
+         </div>
+         <button ng-click="startApi()" class="btn btn-primary">Start API</button>
       </div>
+      <div ng-hide="proyect.scripts" class="row">
+         <div class="col-md-6">
+            <button ng-click="startNode()" class="btn btn-primary">Start NODE</button>
+         </div>
+      </div>
+      <div id="logContainer"></div>
+      <div class="panel-footer prompt"></div>
    </div>
    <div ng-repeat="child in proyect.proyects" class="col-md-4 panel panel-default" style="min-height: 48em;">
       <div class="panel-body">
@@ -35,26 +47,25 @@
             <span class="col-md-9">{{child.author}}</span>
          </div>
       </div>
+      <div ng-show="child.scripts" class="row">
+         <div class="col-md-6">
+            <select ng-model="command.prompt" class="form-control">
+               <option ng-repeat="script in child.scripts" value="{{script}}">{{script}}</option>
+            </select>
+         </div>
+         <button ng-click="startApi()" class="btn btn-primary">Start API</button>
+      </div>
+      <div ng-hide="child.scripts" class="row">
+         <div class="col-md-6">
+            <button ng-click="startNode()" class="btn btn-primary">Start NODE</button>
+         </div>
+      </div>
+      <div id="logContainer"></div>
       <div class="panel-footer prompt">
 
       </div>
    </div>
    <div class="col-md-4">
-      <div ng-if="proyect.scripts">
-         <div class="row">
-            <div class="col-md-6">
-               <select ng-model="command.prompt" class="form-control">
-                  <option ng-repeat="script in proyect.scripts" value="{{script}}">{{script}}</option>
-               </select>
-            </div>
-            <button ng-click="startApi()" class="btn btn-primary">Start API</button>
-         </div>
-      </div>
-      <div>
-         <div class="row">
-            <button ng-click="startNode()" class="btn btn-primary">Start NODE</button>
-         </div>
-      </div>
-      <div id="logContainer"></div>
+
    </div>
 </div>

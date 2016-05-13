@@ -22,7 +22,7 @@ define(['./module', 'jquery'], (app, $)=>{
       $scope.fusion=(data, handler, index)=>{
          $scope.proyects[index].proyects.push(data);
          $scope.proyects.splice($scope.proyects.indexOf(data), 1);
-         //FileService.writeFile($scope.proyects);
+         FileService.writeFile($scope.proyects);
       };
    }]);
 
