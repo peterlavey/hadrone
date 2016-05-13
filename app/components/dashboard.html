@@ -1,7 +1,7 @@
 <div ng-controller="DashboardCtrl" class="panel-group padding-frame">
-   <div ng-drop="true" ng-drag="true" ng-drag-data="proyect" ng-drop-success="fusion($data, $event, $index)" ng-click="setProyectIndex($index)" ng-repeat="proyect in proyects track by proyect.id" class="panel panel-default proyect-panel">
-      <span ng-if="proyect.proyects.length" class="badge">{{proyect.proyects.length}}</span>
-      <h2 align="center">{{proyect.name}}</h2>
-      <img ui-sref="detail" ng-src="{{proyect.icon}}" class="img-responsive" height="100" width="100" />
+   <div ng-drop="true" ng-drag="true" ng-drag-data="project" ng-drop-success="fusion($data, $event, $index)" ng-click="setProjectIndex($index)" ng-repeat="project in projects track by project.id" class="panel panel-default project-panel">
+      <span ng-if="project.projects.length" class="badge">{{project.projects.length}}</span>
+      <h2 align="center">{{project.name}}</h2>
+      <img ui-sref="detail" ng-src="{{project.icon}}" class="img-responsive" height="100" width="100" />
    </div>
 </div>

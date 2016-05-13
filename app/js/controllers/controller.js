@@ -3,26 +3,31 @@ define(['./module', 'jquery'], (app, $)=>{
 
    app.controller('MainCtrl', ['$scope', 'FileService', '$document', '$state', ($scope, FileService, $document, $state)=>{
       $scope.name="Hadrone";
-      $scope.proyect={
+      $scope.project={
          index: null,
          view: ''
       };
-      $scope.proyects=[];
+      $scope.projects=[];
 
       $scope.config = require('../config/electron.config');
 
       $scope.readFile = ()=> FileService.readFile().success((data)=>{
-         if(data) $scope.proyects=data;
+         if(data) $scope.projects=data;
       }).error((err)=>{
          console.log("Error!!! Error!!! Destruir!! D:<");
       });
 
       angular.element($document).ready(()=>$scope.readFile());
-      $scope.writeLog=(msg)=>$('.prompt').append('<span>> '+msg+'</span></br>');
+      $scope.writeLog=(promptId, msg)=>{
+         $('#'+promptId).append('<span>> '+msg+'</span></br>');
+      };
+      $scope.writeLogError=(promptId, msg)=>{
+         $('#'+promptId).append('<span style="color:red">> '+msg+'</span></br>');
+      };
       $scope.fusion=(data, handler, index)=>{
-         $scope.proyects[index].proyects.push(data);
-         $scope.proyects.splice($scope.proyects.indexOf(data), 1);
-         FileService.writeFile($scope.proyects);
+         $scope.projects[index].projects.push(data);
+         $scope.projects.splice($scope.projects.indexOf(data), 1);
+         FileService.writeFile($scope.projects);
       };
       $scope.guid=()=> $scope.s4()+$scope.s4()+'-'+$scope.s4()+'-'+$scope.s4()+'-'+$scope.s4()+'-'+$scope.s4()+$scope.s4()+$scope.s4();
       $scope.s4=()=> Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
@@ -30,17 +35,32 @@ define(['./module', 'jquery'], (app, $)=>{
 
    app.controller('HeaderCtrl', ['$scope', 'FileService', '$state', ($scope, FileService, $state)=>{
       $scope.$state = $state;
-      $scope.removeProyect=(index)=>{
-         $scope.proyects.splice(index, 1);
-         FileService.writeFile($scope.proyects);
+      $scope.removeProject=(index)=>{
+         $scope.projects.splice(index, 1);
+         FileService.writeFile($scope.projects);
       }
+
+      $scope.uploadDataBase=($fileContent, $filePath)=>{
+         let filePath = $filePath.substring(0, $filePath.length - 9);
+         let img = $scope.config.windowConfig().iconDb;
+         $scope.projects.push({
+            'id':$scope.guid(),
+            'name':'MongoDB',
+            'client':filePath+'mongo',
+            'connection':filePath+'mongod',
+            'icon':img,
+            'type':'data-base'
+         });
+         FileService.writeFile($scope.projects);
+         $scope.readFile();
+      };
 
       $scope.showContent = ($fileContent, $filePath)=>{
          $scope.file = JSON.parse($fileContent);
          let filePath = $filePath.substring(0, $filePath.length - 12);
          let img = $scope.config.windowConfig().icon;
 
-         $scope.proyects.push({
+         $scope.projects.push({
             'id': $scope.guid(),
             'name':$scope.file.name,
             'version':$scope.file.version,
@@ -51,49 +71,75 @@ define(['./module', 'jquery'], (app, $)=>{
             'url':filePath,
             'icon':img,
             'scripts':$scope.file.scripts,
-            'proyects':[]
+            'type':'project',
+            'projects':[]
          });
-         FileService.writeFile($scope.proyects);
+         FileService.writeFile($scope.projects);
          $scope.readFile();
       };
 
       $scope.uploadImage = (index, $filePath)=>{
-         $scope.proyects[index].icon=$filePath;
-         FileService.copyFile($filePath, $scope.config.windowConfig().dirname+'\\img\\', $scope.proyects[index].name+'.png');
-         FileService.writeFile($scope.proyects);
+         $scope.projects[index].icon=$filePath;
+         FileService.copyFile($filePath, $scope.config.windowConfig().dirname+'\\img\\', $scope.projects[index].name+'.png');
+         FileService.writeFile($scope.projects);
       };
    }]);
 
    app.controller('DashboardCtrl', ['$scope', ($scope)=>{
-      $scope.setProyectIndex = (index)=> $scope.$parent.proyect.index=index;
+      $scope.setProjectIndex = (index)=> $scope.$parent.project.index=index;
    }]);
 
    app.controller('DetailCtrl', ['$scope', 'COMMANDS', ($scope, COMMANDS)=>{
       let spawn = require('child_process').spawn;
-      $scope.proyect=$scope.$parent.proyects[$scope.$parent.proyect.index];
+      $scope.project=$scope.$parent.projects[$scope.$parent.project.index];
       $scope.command={
          'prompt':'',
          'logs':[]
       };
-      $scope.startApi=()=>{
+      $scope.startApi=(project)=>{
          let promptArray=$scope.command.prompt.split(" ");
          let node=promptArray.shift();
          let promptArgs=promptArray;
 
-         let exec = spawn(node, promptArgs, {cwd:$scope.proyect.url});
+         let exec = spawn(node, promptArgs, {cwd:project.url});
          exec.stdout.on('data', (data)=> {
-            console.log('stdout: ' + data)
-            $scope.writeLog(data.toString());
+            console.log(project.id);
+            console.log('stdout: ' + data.toString());
+            $scope.writeLog(project.id, data.toString());
+         });
+         exec.stderr.on('data', (data)=> {
+            console.log(project.id);
+            console.log('stdout: ' + data.toString());
+            $scope.writeLogError(project.id, data.toString());
          });
       };
-      $scope.startNode=()=>{
-         let exec = spawn(COMMANDS.NODE, [$scope.proyect.main], {cwd:$scope.proyect.url});
+      $scope.startNode=(project)=>{
+         let exec = spawn(COMMANDS.NODE, [project.main], {cwd:project.url});
          exec.stdout.on('data', (data)=> {
-            console.log('stdout: ' + data)
-            $scope.writeLog(data.toString());
+            console.log(project.id);
+            console.log('stdout: ' + data.toString());
+            $scope.writeLog(project.id, data.toString());
+         });
+         exec.stderr.on('data', (data)=> {
+            console.log(project.id);
+            console.log('stdout: ' + data.toString());
+            $scope.writeLogError(project.id, data.toString());
          });
       }
-   }])
+      $scope.startDB=(project)=>{
+         let exec = spawn(project.connection, [], {});
+         exec.stdout.on('data', (data)=> {
+            console.log(project.id);
+            console.log('stdout: ' + data.toString());
+            $scope.writeLog(project.id, data.toString());
+         });
+         exec.stderr.on('data', (data)=> {
+            console.log(project.id);
+            console.log('stdout: ' + data.toString());
+            $scope.writeLogError(project.id, data.toString());
+         });
+      }
+   }]);
 
    app.controller('GuideCtrl', ['$scope', 'COMMANDS', 'HEROKU', ($scope, COMMANDS, HEROKU)=>{
       let spawn = require('child_process').spawn;

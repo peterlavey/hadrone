@@ -25,30 +25,38 @@
       <ul class="col-xs-4 nav navbar-nav options">
          <li ng-show="$state.current.name === 'dashboard'">
             <div class="inputWrapper">
-               <a href="#" id="add">Add Proyect
+               <a href="#">Add Project
                   <span class="glyphicon glyphicon-plus"></span>
                </a>
-               <input id="addFile" class="fileInput" type="file" on-read-file="showContent($fileContent, $filePath)" style="display:inline;" />
+               <input class="fileInput" type="file" on-read-file="showContent($fileContent, $filePath)" style="display:inline;" />
+            </div>
+         </li>
+         <li ng-show="$state.current.name === 'dashboard'">
+            <div class="inputWrapper">
+               <a href="#">Add Data Base
+                  <span class="glyphicon glyphicon-plus"></span>
+               </a>
+               <input class="fileInput" type="file" on-read-file="uploadDataBase($fileContent, $filePath)" style="display:inline;" />
             </div>
          </li>
          <li ng-show="$state.current.name === 'detail'">
             <div class="inputWrapper">
-               <a href="#" id="edit">Edit
+               <a href="#">Edit
                   <span class="glyphicon glyphicon-plus"></span>
                </a>
-               <input id="addImage" class="fileInput" type="file" on-read-file="uploadImage($parent.proyect.index, $filePath)" style="display:inline;" />
+               <input class="fileInput" type="file" on-read-file="uploadImage($parent.project.index, $filePath)" style="display:inline;" />
             </div>
          </li>
          <li ng-show="$state.current.name === 'detail'">
             <div class="inputWrapper">
-               <a ng-click="removeProyect($parent.proyect.index)" href="#" id="remove">Remove
+               <a ng-click="removeProject($parent.project.index)" href="#">Remove
                   <span class="glyphicon glyphicon-plus"></span>
                </a>
             </div>
          </li>
          <li ng-show="$state.current.name === 'detail'">
             <div class="inputWrapper">
-               <span ng-click="setProyectIndex($index)" ui-sref="heroku-guide" class="label label-primary">Upload to Heroku!</span>
+               <span ng-click="setProjectIndex($index)" ui-sref="heroku-guide" class="label label-primary">Upload to Heroku!</span>
             </div>
          </li>
       </ul>

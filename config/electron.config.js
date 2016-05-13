@@ -8,6 +8,7 @@ return   {
     transparent: true,
     //backgroundColor: '#000',
     icon: __dirname + '/img/icon.png',
+    iconDb: __dirname + '/img/mongodb.png',
     dirname: __dirname
   }
 };
