@@ -1,95 +1,28 @@
 <div ng-controller="DetailCtrl">
-   <div ng-if="project.type=='project'" class="col-md-4 panel panel-default" style="min-height: 48em;">
-      <div class="panel-body">
-         <div class="row">
-            <img ng-src="{{project.icon}}" class="img-responsive col-md-3" height="100" width="100"/>
-            <h3 class="col-md-7">{{project.name}}</h3>
-            <span class="label label-primary col-md-2">{{project.version}}</span>
-         </div>
-         <div class="row">
-            <strong class="col-md-3">Description: </strong>
-            <span class="col-md-9">{{project.description}}</span>
-         </div>
-         <div class="row">
-            <strong class="col-md-3">Author: </strong>
-            <span class="col-md-9">{{project.author}}</span>
-         </div>
-      </div>
-      <div ng-show="project.scripts" class="row">
-         <div class="col-md-6">
-            <select ng-model="command.prompt" class="form-control">
-               <option ng-repeat="script in project.scripts" value="{{script}}">{{script}}</option>
-            </select>
-         </div>
-         <button ng-click="startApi(project)" class="btn btn-primary">Start API</button>
-      </div>
-      <div ng-hide="project.scripts" class="row">
-         <div class="col-md-6">
-            <button ng-click="startNode(project)" class="btn btn-primary">Start NODE</button>
-         </div>
-      </div>
-      <div id="{{project.id}}" class="panel-footer prompt"></div>
-   </div>
-   <div ng-repeat="child in project.projects" class="col-md-4 panel panel-default" style="min-height: 48em;">
-      <div ng-if="child.type=='project'">
-         <div class="panel-body">
-            <div class="row">
-               <img ng-src="{{child.icon}}" class="img-responsive col-md-3" height="100" width="100"/>
-               <h3 class="col-md-7">{{child.name}}</h3>
-               <span class="label label-primary col-md-2">{{child.version}}</span>
+   <div class="card">
+      <div align="right" class="card-block" style="background-color: #F44336; height: 5em;">
+         <h3 class="card-title text-uppercase" style="position: absolute;color:#FFF">{{project.name}}</h4>
+            <div class="" align="center">
+               <div id="{{project.id}}" class="tooltip-inner prompt">
+                  
+              </div>
             </div>
-            <div class="row">
-               <strong class="col-md-3">Description: </strong>
-               <span class="col-md-9">{{child.description}}</span>
-            </div>
-            <div class="row">
-               <strong class="col-md-3">Author: </strong>
-               <span class="col-md-9">{{child.author}}</span>
-            </div>
-         </div>
-         <div ng-show="child.scripts" class="row">
-            <div class="col-md-6">
-               <select ng-model="command.prompt" class="form-control">
-                  <option ng-repeat="script in child.scripts" value="{{script}}">{{script}}</option>
-               </select>
-            </div>
-            <button ng-click="startApi(child)" class="btn btn-primary">Start API</button>
-         </div>
-         <div ng-hide="child.scripts" class="row">
-            <div class="col-md-6">
-               <button ng-click="startNode(child)" class="btn btn-primary">Start NODE</button>
-            </div>
-         </div>
-         <div id="{{child.id}}" class="panel-footer prompt"></div>
-      </div>
-      <div ng-if="child.type=='data-base'">
-         <div class="panel-body">
-            <div class="row">
-               <img ng-src="{{child.icon}}" class="img-responsive col-md-3" height="100" width="100"/>
-               <h3 class="col-md-7">{{child.name}}</h3>
-            </div>
-         </div>
-         <div class="row">
-            <div class="col-md-6">
-               <button ng-click="startDB(child)" class="btn btn-primary">Start DB</button>
-            </div>
-         </div>
-         <div id="{{child.id}}" class="panel-footer prompt"></div>
-      </div>
-   </div>
 
-   <div ng-if="project.type=='data-base'" class="col-md-4">
-      <div class="panel-body">
-         <div class="row">
-            <img ng-src="{{project.icon}}" class="img-responsive col-md-3" height="100" width="100"/>
-            <h3 class="col-md-7">{{project.name}}</h3>
-         </div>
+         <img ng-src="{{project.icon}}" class="card-img-top avatar" alt="Card image cap" class="img-responsive" height="100" width="100">
       </div>
-      <div class="row">
-         <div class="col-md-6">
-            <button ng-click="startDB(project)" class="btn btn-primary">Start DB</button>
-         </div>
+      <div class="card-block">
+         <p class="card-text">{{project.description}}</p>
       </div>
-      <div id="{{project.id}}" class="panel-footer prompt"></div>
+      <div ng-show="project.scripts" class="card-block">
+         <select ng-model="command.prompt" class="form-control">
+            <option ng-repeat="script in project.scripts" value="{{script}}">{{script}}</option>
+         </select>
+         <button ng-click="startApi(project)" class="btn btn-primary">Startup</button>
+         <button class="btn btn-primary">Console</button>
+      </div>
+      <div ng-hide="project.scripts" class="card-block">
+         <button ng-click="startNode(project)" class="btn btn-primary">Startup</button>
+         <button class="btn btn-primary">Console</button>
+      </div>
    </div>
 </div>

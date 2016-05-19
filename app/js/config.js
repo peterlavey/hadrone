@@ -5,12 +5,15 @@ requirejs.config({
       'angular':'../bower_components/angular/angular.min',
       'uiRouter':'../bower_components/angular-ui-router/release/angular-ui-router.min',
       'jquery':'../bower_components/jquery/dist/jquery.min',
-      'ngDraggable': '../bower_components/ngDraggable/ngDraggable'
-      //'bootstrap':'../bower_components/bootstrap/js'
+      'ngDraggable': '../bower_components/ngDraggable/ngDraggable',
+      'bootstrap':'../bower_components/bootstrap/dist/js/bootstrap.min'
    },
    shim:{
       'jquery':{
          exports:'$'
+      },
+      'bootstrap':{
+         deps:['jquery']
       },
       'angular':{
          deps:['jquery'],
