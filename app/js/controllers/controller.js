@@ -5,7 +5,10 @@ define(['./module', 'jquery'], (app, $)=>{
       $scope.name="Hadrone";
       $scope.project={
          index: null,
-         view: ''
+         view: '',
+         prompt:{
+            msgs:''
+         }
       };
       $scope.projects=[];
 
@@ -19,7 +22,8 @@ define(['./module', 'jquery'], (app, $)=>{
 
       angular.element($document).ready(()=>$scope.readFile());
       $scope.writeLog=(promptId, msg)=>{
-         $('#'+promptId).append('<span>> '+msg+'</span></br>');
+         if(!$('#'+promptId).hasClass('active')) $('#'+promptId).addClass('active');
+         $('#'+promptId).append('<span style="color:rgb(49, 179, 8)">> '+msg+'</span></br>');
       };
       $scope.writeLogError=(promptId, msg)=>{
          $('#'+promptId).append('<span style="color:red">> '+msg+'</span></br>');
@@ -96,6 +100,7 @@ define(['./module', 'jquery'], (app, $)=>{
          'prompt':'',
          'logs':[]
       };
+
       $scope.startApi=(project)=>{
          let promptArray=$scope.command.prompt.split(" ");
          let node=promptArray.shift();
@@ -103,29 +108,21 @@ define(['./module', 'jquery'], (app, $)=>{
 
          let exec = spawn(node, promptArgs, {cwd:project.url});
          exec.stdout.on('data', (data)=> {
-            console.log(project.id);
-            console.log('stdout: ' + data.toString());
             $scope.writeLog(project.id, data.toString());
          });
          exec.stderr.on('data', (data)=> {
-            console.log(project.id);
-            console.log('stdout: ' + data.toString());
             $scope.writeLogError(project.id, data.toString());
          });
       };
       $scope.startNode=(project)=>{
          let exec = spawn(COMMANDS.NODE, [project.main], {cwd:project.url});
          exec.stdout.on('data', (data)=> {
-            console.log(project.id);
-            console.log('stdout: ' + data.toString());
             $scope.writeLog(project.id, data.toString());
          });
          exec.stderr.on('data', (data)=> {
-            console.log(project.id);
-            console.log('stdout: ' + data.toString());
             $scope.writeLogError(project.id, data.toString());
          });
-      }
+      };
       $scope.startDB=(project)=>{
          let exec = spawn(project.connection, [], {});
          exec.stdout.on('data', (data)=> {
@@ -138,7 +135,9 @@ define(['./module', 'jquery'], (app, $)=>{
             console.log('stdout: ' + data.toString());
             $scope.writeLogError(project.id, data.toString());
          });
-      }
+      };
+      $scope.showPrompt=(id)=>$('#'+id).show();
+      $scope.hideePrompt=(id)=>$('#'+id).hide();
    }]);
 
    app.controller('GuideCtrl', ['$scope', 'COMMANDS', 'HEROKU', ($scope, COMMANDS, HEROKU)=>{

@@ -38,17 +38,27 @@
 
 .prompt{
    background-color: rgba(0, 0, 0, 0.78);
-   margin-left: 74%;
-   position: absolute;
 }
 
-.prompt span{
+.prompt .info{
    color: #18F000;
+}
+
+.prompt .error{
+   color: #F00;
+}
+
+.prompt.row{
+   left: 18px;
+   margin-left: 89%;
+   margin-top: 1%;
+   height: 1px;
+   border-radius: 0 500px 500px 0;
 }
 
 .img-responsive{
    height: auto;
-width: 40%;
+   width: 40%;
 }
 
 div.avatar {
