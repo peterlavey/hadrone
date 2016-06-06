@@ -1,0 +1,13 @@
+<div ng-controller="GuideCtrl">
+   <p>
+      *Necesitas tener tu proyecto en un repositorio GIT
+   </p>
+   <h1>Getting Started on Heroku!</h1>
+   <h2>Primero, registrate haciendo click <a ng-click="openBrowser(register)">Aquí</a></h2>
+   <h2>Segundo, instala el <a ng-click="openBrowser(toolbelt)">Toolbelt</a> de Heroku</h2>
+   <h2>Ingresa tu usuario y contraseña registrado en Heroku, estos datos quedarán guardados en la aplicación
+   y los puedes modificar en tu perfil de usuario</h2>
+   <input ng-model="profile.user" type="text" name="name" value="">
+   <input ng-model="profile.pass" type="text" name="name" value="">
+   <button ng-click="loginHeroku()" type="button" name="button">Login!</button>
+</div>

@@ -1,0 +1,20 @@
+<div ng-controller="DashboardCtrl" class="panel-group padding-frame">
+   <div class="row">
+      <div ng-repeat="project in projects track by project.id" class="col-xs-4">
+         <div ng-drop="true" ng-drag="true" ng-drag-data="project" ng-drop-success="fusion($data, $event, $index)" class="card project-panel">
+            <div class="card-block">
+               <h4 class="card-title text-capitalize">{{project.name}}<span class="label label-default label-pill pull-xs-right">{{project.projects.length}}</span></h4>
+            </div>
+            <div align="center">
+               <img ng-src="{{project.icon}}" alt="Card image" class="img-responsive" height="100" width="100">
+            </div>
+            <div class="card-block text-xs-center">
+               <p class="card-text" style="min-height:48px">{{project.description}}</p>
+               <a ng-click="setProjectIndex($index)" ui-sref="detail" href="#" class="card-link">Open</a>
+               <a ng-click="setProjectIndex($index)" href="#" class="card-link">Config</a>
+               <p class="card-text"><small class="text-muted">{{project.version}}</small></p>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

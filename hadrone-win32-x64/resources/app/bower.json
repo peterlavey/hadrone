@@ -1,0 +1,26 @@
+{
+  "name": "app",
+  "authors": [
+    "Hadrone"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "angular": "^1.5.0",
+    "bootstrap": "v4.0.0-alpha.2",
+    "requirejs": "^2.2.0",
+    "domReady": "requirejs-domready#^2.0.1",
+    "jquery": "^2.2.2",
+    "angular-ui-router": "^0.2.18",
+    "ngDraggable": "^0.1.8"
+  }
+}
