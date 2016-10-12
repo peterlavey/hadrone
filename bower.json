@@ -4,6 +4,7 @@
     "Hadrone"
   ],
   "description": "",
+  "directory":"app/components",
   "main": "",
   "moduleType": [
     "amd",

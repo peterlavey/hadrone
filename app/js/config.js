@@ -1,12 +1,12 @@
 requirejs.config({
-   //baseUrl: '/',
+   baseUrl: '/',
    paths:{
-      'domReady':'../bower_components/domReady/domReady',
-      'angular':'../bower_components/angular/angular.min',
-      'uiRouter':'../bower_components/angular-ui-router/release/angular-ui-router.min',
-      'jquery':'../bower_components/jquery/dist/jquery.min',
-      'ngDraggable': '../bower_components/ngDraggable/ngDraggable',
-      'bootstrap':'../bower_components/bootstrap/dist/js/bootstrap.min'
+      'domReady':'../vendor/domReady/domReady',
+      'angular':'../vendor/angular/angular.min',
+      'uiRouter':'../vendor/angular-ui-router/release/angular-ui-router.min',
+      'jquery':'../vendor/jquery/dist/jquery.min',
+      'ngDraggable': '../vendor/ngDraggable/ngDraggable',
+      'bootstrap':'../vendor/bootstrap/dist/js/bootstrap.min'
    },
    shim:{
       'jquery':{
