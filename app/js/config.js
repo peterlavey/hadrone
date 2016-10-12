@@ -1,5 +1,5 @@
 requirejs.config({
-   baseUrl: '/',
+   //baseUrl: '/',
    paths:{
       'domReady':'../vendor/domReady/domReady',
       'angular':'../vendor/angular/angular.min',

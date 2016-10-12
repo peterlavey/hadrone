@@ -1,0 +1,1 @@
+[{"id":"d9998199-c19b-b641-4b31-e732182b6415","name":"mean-base","version":"1.0.0","description":"","main":"server.js","repository":{"type":"git"},"author":"Pedro Cisternas","url":"C:\\workspace\\Inacap\\todo\\","icon":"C:\\workspace\\Inacap\\hadrone\\config/img/icon.png","scripts":{"test":"echo \"Error: no test specified\" && exit 1"},"type":"project","projects":[]}]
