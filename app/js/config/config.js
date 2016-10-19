@@ -17,7 +17,7 @@ define(['./module'], (app)=>{
    .state('heroku-guide',{
       url: '/heroku-guide',
       templateUrl: 'components/heroku-guide.html'
-   })
+   });
    $urlRouterProvider.otherwise('/dashboard');
    }]);
 });

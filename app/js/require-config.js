@@ -27,5 +27,5 @@ requirejs.config({
          exports:'ngDraggable'
       }
    },
-   deps:['../js/bootstrap']
+   deps:['../js/main']
 });

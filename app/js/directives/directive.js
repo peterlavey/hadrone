@@ -19,13 +19,13 @@ define(['./module'], (app)=>{
          restrict: 'E',
          //transclude: true,
          templateUrl:'templates/menu.html'
-      }
+      };
    }]);
    app.directive('modal', [()=>{
       return {
          restrict: 'E',
          //transclude: true,
          templateUrl:'templates/modal.html'
-      }
+      };
    }]);
 });

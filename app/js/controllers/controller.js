@@ -42,7 +42,7 @@ define(['./module', 'jquery'], (app, $)=>{
       $scope.removeProject=(index)=>{
          $scope.projects.splice(index, 1);
          FileService.writeFile($scope.projects);
-      }
+      };
 
       $scope.uploadDataBase=($fileContent, $filePath)=>{
          let filePath = $filePath.substring(0, $filePath.length - 9);
@@ -107,11 +107,22 @@ define(['./module', 'jquery'], (app, $)=>{
          let promptArgs=promptArray;
 
          let exec = spawn(node, promptArgs, {cwd:project.url});
+
+         //Pruebas stdin para intentar intersectar la respuesta de un proceso y escribir en el
+         exec.stdin.on('readable', ()=>{
+           let data = exec.stdin.read();
+           if(data) $scope.writeLogError(data.toString());
+         });
+         exec.stdin.on('end', () => {
+           exec.stdout.write('end');
+         });
+
          exec.stdout.on('data', (data)=> {
             $scope.writeLog(project.id, data.toString());
          });
          exec.stderr.on('data', (data)=> {
             $scope.writeLogError(project.id, data.toString());
+            exec.stdout.write('weeeeena');
          });
       };
       $scope.startNode=(project)=>{
@@ -151,6 +162,17 @@ define(['./module', 'jquery'], (app, $)=>{
          pass:''
       };
 
+      $scope.nodeTest=()=>{
+         let exec = spawn('node', ['qqq="xxx"'], {});
+         exec.stdout.on('data', (data)=> {
+            console.log('stdout: ' + data);
+            exec = spawn('node ', ['qqq+"rrr"'], {});
+            exec.stdout.on('data', (data)=> {
+               console.log('stdout: ' + data);
+            });
+         });
+      };
+
       $scope.loginHeroku2=()=>{
          let exec = spawn(COMMANDS.HEROKU, [COMMANDS.LOGIN], {});
          exec.stdout.on('data', (data)=> {
@@ -188,8 +210,8 @@ define(['./module', 'jquery'], (app, $)=>{
       $scope.openBrowser=(url)=>{
          let exec = spawn(COMMANDS.NAVIGATE, [url], {});
          exec.stdout.on('data', (data)=> {
-            console.log('stdout: ' + data)
+            console.log('stdout: ' + data);
          });
       };
-   }])
+   }]);
 });

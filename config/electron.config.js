@@ -12,4 +12,4 @@ return   {
     dirname: __dirname
   }
 };
-exports.pathStartup = ()=> 'file://' + __dirname + '/../app/index.html';
+exports.pathStartup = ()=> 'file://' + __dirname + '/../dist/index.html';
