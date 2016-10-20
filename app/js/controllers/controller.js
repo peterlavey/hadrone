@@ -10,6 +10,8 @@ define(['./module', 'jquery'], (app, $)=>{
             msgs:''
          }
       };
+      $scope.spawns=[];
+
       $scope.projects=[];
 
       $scope.config = require('../config/electron.config');
@@ -38,7 +40,21 @@ define(['./module', 'jquery'], (app, $)=>{
    }]);
 
    app.controller('HeaderCtrl', ['$scope', 'FileService', '$state', ($scope, FileService, $state)=>{
+      const exec = require('child_process').exec;
       $scope.$state = $state;
+      $scope.killSpawns=()=>{
+        let PIDS="";
+        $scope.$parent.spawns.forEach((PID)=> PIDS+=" /PID "+PID);
+        exec('Taskkill'+PIDS+' /F', (error, stdout, stderr) => {
+          if (error) {
+            console.error(`exec error: ${error}`);
+            return;
+          }
+          $scope.$parent.spawns=[];
+          console.log(`stdout: ${stdout}`);
+          console.log(`stderr: ${stderr}`);
+        });
+      };
       $scope.removeProject=(index)=>{
          $scope.projects.splice(index, 1);
          FileService.writeFile($scope.projects);
@@ -107,22 +123,15 @@ define(['./module', 'jquery'], (app, $)=>{
          let promptArgs=promptArray;
 
          let exec = spawn(node, promptArgs, {cwd:project.url});
+         console.info('Se generó proceso PID'+exec.pid);
 
-         //Pruebas stdin para intentar intersectar la respuesta de un proceso y escribir en el
-         exec.stdin.on('readable', ()=>{
-           let data = exec.stdin.read();
-           if(data) $scope.writeLogError(data.toString());
-         });
-         exec.stdin.on('end', () => {
-           exec.stdout.write('end');
-         });
+         $scope.$parent.spawns.push(exec.pid);
 
          exec.stdout.on('data', (data)=> {
-            $scope.writeLog(project.id, data.toString());
+          $scope.writeLog(project.id, data.toString());
          });
          exec.stderr.on('data', (data)=> {
             $scope.writeLogError(project.id, data.toString());
-            exec.stdout.write('weeeeena');
          });
       };
       $scope.startNode=(project)=>{

@@ -26,7 +26,7 @@ gulp.task('clean', ()=> gulp.src(bases.dist).pipe(clean()));
 gulp.task('scripts', ['clean'], ()=>{
   gulp.src(paths.scripts, {cwd: 'app/**'})
   .pipe(babel({presets: ['es2015']}))
-  .pipe(uglify())
+  //.pipe(uglify())
   .pipe(gulp.dest(bases.dist));
 });
 
@@ -35,9 +35,12 @@ gulp.task('copy', ['clean'], ()=>{
   gulp.src(paths.templates, {cwd: bases.app}).pipe(gulp.dest(bases.dist + 'templates'));
   gulp.src(paths.components, {cwd: bases.app}).pipe(gulp.dest(bases.dist + 'components'));
   gulp.src(paths.styles, {cwd: bases.app}).pipe(gulp.dest(bases.dist + 'styles'));
+});
+
+gulp.task('copy-libs', ['clean'], ()=>{
   gulp.src(paths.libs, {cwd: 'app/**'}).pipe(gulp.dest(bases.dist));
 });
 
-gulp.task('watch', ()=> gulp.watch('app/**/*', ['scripts', 'copy']));
+gulp.task('watch', ()=> gulp.watch('app/**/*', ['clean', 'scripts', 'copy']));
 
-gulp.task('default', ['clean', 'scripts', 'copy']);
+gulp.task('default', ['clean', 'scripts', 'copy', 'copy-libs']);
