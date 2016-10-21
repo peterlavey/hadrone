@@ -6,7 +6,8 @@ requirejs.config({
       'uiRouter':'../vendor/angular-ui-router/release/angular-ui-router.min',
       'jquery':'../vendor/jquery/dist/jquery.min',
       'ngDraggable': '../vendor/ngDraggable/ngDraggable',
-      'bootstrap':'../vendor/bootstrap/dist/js/bootstrap.min'
+      'bootstrap':'../vendor/bootstrap/dist/js/bootstrap.min',
+      'ui.bootstrap':'libs/ui-bootstrap.min'
    },
    shim:{
       'jquery':{
@@ -25,7 +26,10 @@ requirejs.config({
       'ngDraggable':{
          deps:['angular'],
          exports:'ngDraggable'
-      }
+      },
+      'ui.bootstrap':{
+         deps:['angular']
+       }
    },
    deps:['../js/main']
 });

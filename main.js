@@ -1,22 +1,9 @@
 'use strict';
 
 const { app, BrowserWindow } = require('electron');
-//const ipc = electron.ipcMain;
 const config = require('./config/electron.config');
 
 let mainWindow;
-
-//var Tray = electron.Tray;
-//var Menu = electron.Menu;
-//var path = require('path');
-
-//var trayIcon = null;
-
-
-/*ipc.on('synchronous-message', function(event, arg) {
-  console.log(arg);  // prints "ping"
-  event.returnValue = 'pong';
-});*/
 
 function createWindow () {
   mainWindow = new BrowserWindow(config.windowConfig());

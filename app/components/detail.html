@@ -3,7 +3,7 @@
    <div class="card">
       <div align="right" class="card-block" style="background-color: #F44336; height: 5em;">
          <h3 class="card-title text-uppercase" style="position: absolute;color:#FFF">{{project.name}}</h3>
-         <img ng-src="{{project.icon}}" class="card-img-top avatar" alt="Card image cap" class="img-responsive" height="100" width="100">
+         <img id="{{project.id}}" uib-popover="{{msg}}" popover-trigger="'click'" popover-placement="left" popover-is-open="true" popover-class="prompt" ng-src="{{project.icon}}" class="card-img-top avatar" alt="Card image cap" class="img-responsive" height="100" width="100">
       </div>
       <div ng-if="project.type=='project'" class="card-block">
          <p class="card-text">{{project.description}}</p>
@@ -22,11 +22,6 @@
       <div ng-if="project.type=='data-base'" ng-hide="project.scripts" class="card-block">
          <button ng-click="startDB(project)" class="btn btn-primary">Startup</button>
          <button class="btn btn-primary">Console</button>
-      </div>
-      <div class="card-block" >
-         <div ng-click="hidePrompt(project.id)" class="prompt">
-            <span id="{{project.id}}" class="{{prompt.type}}">></span></br>
-         </div>
       </div>
    </div>
    <!-- CHILDS -->
